@@ -2,15 +2,12 @@ import store from 'store';
 import * as a from 'actions';
 
 const mkpath = path => `/api/v1/${path}`;
-const jsonData = {
-  dataType: 'json',
-  contentType: 'application/json; charset=UTF-8',
-};
 
 export function post(path, data) {
   return new Promise((resolve, reject) => {
     $.ajax(mkpath(path), {
-      ...jsonData,
+      dataType: 'json',
+      contentType: 'application/json; charset=UTF-8',
       method: 'post',
       data: JSON.stringify(data),
       success: resolve,
@@ -22,7 +19,8 @@ export function post(path, data) {
 export function get(path) {
   return new Promise((resolve, reject) => {
     $.ajax(mkpath(path), {
-      ...jsonData,
+      dataType: 'json',
+      contentType: 'application/json; charset=UTF-8',
       method: 'get',
       success: resolve,
       faliure: reject,
@@ -30,10 +28,10 @@ export function get(path) {
   });
 }
 
-export function createSession(email, password) {
-  post('/sessions', { email, password }).then(resp => store.dispatch(a.newSession(resp.json())));
+export function createSession({ email, password }) {
+  return post('sessions', { email, password }).then(({ data }) => console.log('here') || store.dispatch(a.newSession(data)));
 }
 
-export function createUser(email, password, passwordConfirmation) {
-  post('/users', { email, password, passwordConfirmation }).then(() => createSession(email, password));
+export function createUser(user) {
+  return post('users', { user }).then(() => createSession(user));
 }

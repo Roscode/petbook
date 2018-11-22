@@ -22,6 +22,7 @@ defmodule PetbookWeb.Router do
   scope "/api/v1", PetbookWeb do
     pipe_through :api
 
+    resources "/sessions", SessionController, only: [:create]
     resources "/users", UserController, except: [:new, :edit]
   end
 end

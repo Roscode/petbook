@@ -12,7 +12,7 @@ function LoginForm({ onSubmit }) {
         <Formik
           initialValues={{ email: '', password: '' }}
           onSubmit={(values, { setSubmitting }) => {
-            onSubmit(values).then(() => setSubmitting(false));
+            onSubmit(values).finally(() => setSubmitting(false));
           }}
         >
           {({ isSubmitting }) => (
@@ -44,8 +44,9 @@ function SignUpForm({ onSubmit }) {
         <h5 className="card-title text-center">Sign Up</h5>
         <Formik
           initialValues={{ email: '', password: '', passwordConfirmation: '' }}
-          onSubmit={(values, { setSubmitting }) => onSubmit(values).then(() => setSubmitting(false))
-          }
+          onSubmit={(values, { setSubmitting }) => {
+            onSubmit(values).finally(() => setSubmitting(false));
+          }}
         >
           {({ isSubmitting }) => (
             <Form component="form">
@@ -85,16 +86,12 @@ class LoginPage extends React.Component {
     const form = loginMode
       ? (
         <LoginForm
-          onSubmit={({ email, password }) => createSession(email, password)}
+          onSubmit={vals => createSession(vals)}
         />
       )
       : (
         <SignUpForm
-          onSubmit={({
-            email,
-            password,
-            passwordConfirmation,
-          }) => createUser(email, password, passwordConfirmation)}
+          onSubmit={vals => createUser(vals)}
         />
       );
     return (

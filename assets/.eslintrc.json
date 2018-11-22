@@ -1,7 +1,8 @@
 {
     "extends": "airbnb",
     "globals": {
-        "$": true
+        "$": true,
+        "window": true
     },
     "rules": {
         "import/no-unresolved": "off",
