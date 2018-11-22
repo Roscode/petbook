@@ -1,0 +1,12 @@
+{
+    "extends": "airbnb",
+    "globals": {
+        "$": true
+    },
+    "rules": {
+        "import/no-unresolved": "off",
+        "react/prop-types": "off",
+        "jsx-a11y/label-has-for": "off",
+        "jsx-a11y/label-has-associated-control": "off"
+    }
+}

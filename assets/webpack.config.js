@@ -1,3 +1,4 @@
+/* eslint-disable */
 const path = require('path');
 const glob = require('glob');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -43,6 +44,10 @@ module.exports = (env, options) => ({
   },
   resolve: {
     extensions: ['.js', '.jsx', '.css', '.scss'],
+    modules: [
+      path.resolve('./js'),
+      path.resolve('./node_modules')
+    ]
   },
   plugins: [
     new MiniCssExtractPlugin({ filename: '../css/app.css' }),

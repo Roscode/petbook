@@ -1,1 +1,2 @@
-export const EXAMPLE_CONSTANT = 'EXAMPLE_CONSTANT';
+export const NEW_SESSION = 'NEW_SESSION';
+export const LOGOUT = 'LOGOUT';
