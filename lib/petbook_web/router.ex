@@ -19,8 +19,9 @@ defmodule PetbookWeb.Router do
     get "/", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", PetbookWeb do
-  #   pipe_through :api
-  # end
+  scope "/api/v1", PetbookWeb do
+    pipe_through :api
+
+    resources "/users", UserController, except: [:new, :edit]
+  end
 end
