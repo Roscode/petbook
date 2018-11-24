@@ -10,10 +10,10 @@ echo "Building..."
 mkdir -p ~/.config
 
 mix deps.get
-(cd assets && npm)
+(cd assets && yarn)
 mix ecto.create
 mix ecto.migrate
-(cd assets && npm run deploy)
+(cd assets && yarn deploy)
 mix phx.digest
 mix compile
 
