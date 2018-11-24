@@ -1,7 +1,16 @@
 import { createStore } from 'redux';
-import rootReducer from './reducers';
+import rootReducer from 'reducers';
+import { loadState, saveState } from 'localStorage';
+
+const persistedState = loadState();
 
 /* eslint-disable no-underscore-dangle */
-export default createStore(rootReducer,
+const store = createStore(rootReducer, persistedState,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 /* eslint-enable */
+
+store.subscribe(() => {
+  saveState(store.getState());
+});
+
+export default store;

@@ -110,7 +110,7 @@ class LoginPage extends React.Component {
               <div className="card-body">
                 {form}
               </div>
-              {loginMode ? 'already have an account?' : 'need an account?'}
+              {loginMode ? 'need an account?' : 'already have an account?' }
               <button
                 onClick={() => this.setState({ loginMode: !loginMode })}
                 type="button"
