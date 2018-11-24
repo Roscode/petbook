@@ -1,8 +1,9 @@
 import React from 'react';
-import { createSession, createUser } from 'api';
+import { googleSignIn, createSession, createUser } from 'api';
 import {
   Formik, Form, Field, ErrorMessage,
 } from 'formik';
+import GoogleLogin from 'react-google-login';
 
 function LoginForm({ onSubmit }) {
   return (
@@ -75,6 +76,11 @@ function SignUpForm({ onSubmit }) {
     </div>);
 }
 
+function receiveGoogleResponse(googleUser) {
+  const { id_token: idToken } = googleUser.getAuthResponse(); // water
+  googleSignIn(idToken);
+}
+
 class LoginPage extends React.Component {
   constructor(props) {
     super(props);
@@ -94,6 +100,8 @@ class LoginPage extends React.Component {
           onSubmit={vals => createUser(vals)}
         />
       );
+    // TODO find out if we need to have a CSP in order to load the google scripts
+    // And if so, add one
     return (
       <div className="container">
         <div className="row">
@@ -102,7 +110,7 @@ class LoginPage extends React.Component {
               <div className="card-body">
                 {form}
               </div>
-              {loginMode ? 'already have an account' : 'an account'}
+              {loginMode ? 'already have an account?' : 'need an account?'}
               <button
                 onClick={() => this.setState({ loginMode: !loginMode })}
                 type="button"
@@ -110,6 +118,11 @@ class LoginPage extends React.Component {
               >
                 {loginMode ? 'Sign Up' : 'Login'}
               </button>
+              <GoogleLogin
+                clientId={process.env.GOOGLE_CLIENT_ID}
+                onSuccess={receiveGoogleResponse}
+                onFailure={receiveGoogleResponse}
+              />
             </div>
           </div>
         </div>

@@ -29,9 +29,13 @@ export function get(path) {
 }
 
 export function createSession({ email, password }) {
-  return post('sessions', { email, password }).then(({ data }) => console.log('here') || store.dispatch(a.newSession(data)));
+  return post('sessions', { email, password }).then(({ data }) => store.dispatch(a.newSession(data)));
 }
 
 export function createUser(user) {
   return post('users', { user }).then(() => createSession(user));
+}
+
+export function googleSignIn(idToken) {
+  return post('sessions', { idToken }).then(({ data }) => store.dispatch(a.newSession(data)));
 }
