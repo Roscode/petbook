@@ -28,7 +28,7 @@ config :petbook, PetbookWeb.Endpoint,
   version: Application.spec(:phoenix_distillery, :vsn),
   secret_key_base: get_secret.("key_base"),
   http: [:inet6, port: {:system, "PORT"}],
-  url: [host: "example.com", port: 443, scheme: "https"],
+  url: [host: "petbook.roscode.party", port: 443, scheme: "https"],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
