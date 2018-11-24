@@ -41,6 +41,10 @@ defmodule Petbook.Accounts do
     Repo.get_by(User, email: email)
   end
 
+  def get_user_by_google_id(google_id) do
+    Repo.get_by(User, google_id: google_id)
+  end
+
   def get_and_auth_user(email, password) do
     user = get_user_by_email(email)
     case Comeonin.Argon2.check_pass(user, password) do
