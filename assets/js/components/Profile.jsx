@@ -21,41 +21,41 @@ function Profile() {
             <Form className="form signin-form">
               <label>
                 Name:
-                <Field classname="form-control" type="text" name="name" />
+                <Field className="form-control" type="text" name="name" />
               </label>
               <ErrorMessage name="name" component="div" />
               <label>
                 Age:
-                <Field classname="form-control" type="number" min="0" name="age" />
+                <Field className="form-control" type="number" min="0" name="age" />
               </label>
               <ErrorMessage name="age" component="div" />
               <label>
                 Birthday:
-                <Field classname="form-control" type="date" max="2018-11-24" name="birthday" />
+                <Field className="form-control" type="date" max="2018-11-24" name="birthday" />
               </label>
               <ErrorMessage name="birthday" component="div" />
               <label>
                 Gender:
-                <Field classname="form-control" type="text" name="gender" />
+                <Field className="form-control" type="text" name="gender" />
               </label>
               <ErrorMessage name="gender" component="div" />
               <label>
                 Species:
-                <Field classname="form-control" type="text" name="species" />
+                <Field className="form-control" type="text" name="species" />
               </label>
               <ErrorMessage name="species" component="div" />
               <label>
                 Favorite Toy:
-                <Field classname="form-control" type="text" name="toy" />
+                <Field className="form-control" type="text" name="toy" />
               </label>
               <ErrorMessage name="toy" component="div" />
               <label>
                 Favorite Treat:
-                <Field classname="form-control" type="text" name="treat" />
+                <Field className="form-control" type="text" name="treat" />
               </label>
               <ErrorMessage name="treat" component="div" />
-              <button type="submit" disabled={isSubmitting}>
-                Sign In
+              <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
+                Create Pet
               </button>
             </Form>
           )}
