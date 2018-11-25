@@ -80,8 +80,8 @@ end
 
 # Configure your database
 config :petbook, Petbook.Repo,
-  username: "petbook",
-  password: get_secret.("db_pass"),
+  username: "postgres",
+  password: "postgres",
   database: "petbook_dev",
   hostname: "localhost",
   pool_size: 10
