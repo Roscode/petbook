@@ -6,8 +6,8 @@ import {
 import _ from 'lodash';
 import { connect } from 'react-redux';
 
-function AddPost(posts) {
-    let newsfeed = _.map(posts, (p) => <Post key={p.id} item={p} />)
+function AddPost(state) {
+    let newsfeed = _.map(state.posts.reverse(), (p) => <Post key={p.id} item={p} />)
     return (
         <div>
             <Formik initialValues={{ content: '', pet_id: 1 }}
@@ -36,6 +36,6 @@ function AddPost(posts) {
 export default connect(state => state)(AddPost);
 
 function Post(props) {
-    let {item} = props;
-    return <div>{item.content}</div>
+    let {item, key} = props;
+    return <div key={key}>{item.content}</div>
 }
