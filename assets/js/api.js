@@ -37,7 +37,7 @@ export function createUser(user) {
 }
 
 export function createPost(post) {
-  return post_out('posts', { post });
+  return post_out('posts', { post }).then(({ data }) => store.dispatch(a.updateNewsfeed(data)));
 }
 
 export function googleSignIn(idToken) {
