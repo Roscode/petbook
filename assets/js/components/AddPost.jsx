@@ -7,6 +7,7 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 
 function AddPost(state) {
+    // TODO: Filter by friends
     let newsfeed = _.map(state.posts.reverse(), (p) => <Post key={p.id} item={p} />)
     return (
         <div>
