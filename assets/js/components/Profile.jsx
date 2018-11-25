@@ -21,37 +21,37 @@ function Profile() {
             <Form className="form signin-form">
               <label>
                 Name:
-                <Field type="text" name="name" />
+                <Field classname="form-control" type="text" name="name" />
               </label>
               <ErrorMessage name="name" component="div" />
               <label>
                 Age:
-                <Field type="number" min="0" name="age" />
+                <Field classname="form-control" type="number" min="0" name="age" />
               </label>
               <ErrorMessage name="age" component="div" />
               <label>
                 Birthday:
-                <Field type="date" max="2018-11-24" name="birthday" />
+                <Field classname="form-control" type="date" max="2018-11-24" name="birthday" />
               </label>
               <ErrorMessage name="birthday" component="div" />
               <label>
                 Gender:
-                <Field type="text" name="gender" />
+                <Field classname="form-control" type="text" name="gender" />
               </label>
               <ErrorMessage name="gender" component="div" />
               <label>
                 Species:
-                <Field type="text" name="species" />
+                <Field classname="form-control" type="text" name="species" />
               </label>
               <ErrorMessage name="species" component="div" />
               <label>
                 Favorite Toy:
-                <Field type="text" name="toy" />
+                <Field classname="form-control" type="text" name="toy" />
               </label>
               <ErrorMessage name="toy" component="div" />
               <label>
                 Favorite Treat:
-                <Field type="text" name="treat" />
+                <Field classname="form-control" type="text" name="treat" />
               </label>
               <ErrorMessage name="treat" component="div" />
               <button type="submit" disabled={isSubmitting}>
