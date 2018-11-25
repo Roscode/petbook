@@ -1,5 +1,5 @@
 import React from 'react';
-import { googleSignIn, createSession, createUser } from 'api';
+import { googleSignIn, createSession, createUser, fetchPosts } from 'api';
 import {
   Formik, Form, Field, ErrorMessage,
 } from 'formik';
@@ -20,15 +20,15 @@ function LoginForm({ onSubmit }) {
             <Form className="form signin-form">
               <label>
                 Email:
-                <Field type="email" name="email" />
+                <Field className="form-control" type="email" name="email" />
               </label>
               <ErrorMessage name="email" component="div" />
               <label>
                 Password:
-                <Field type="password" name="password" />
+                <Field className="form-control" type="password" name="password" />
               </label>
               <ErrorMessage name="password" component="div" />
-              <button type="submit" disabled={isSubmitting}>
+              <button className="btn btn-primary btn-lg btn-block" type="submit" disabled={isSubmitting}>
                 Sign In
               </button>
             </Form>
@@ -53,20 +53,20 @@ function SignUpForm({ onSubmit }) {
             <Form component="form">
               <label>
                 Email:
-                <Field type="email" name="email" />
+                <Field className="form-control" type="email" name="email" />
               </label>
               <ErrorMessage name="email" component="div" />
               <label>
                 Password:
-                <Field type="password" name="password" />
+                <Field className="form-control" type="password" name="password" />
               </label>
               <ErrorMessage name="password" component="div" />
               <label htmlFor="signUpPasswordConfirmation">
                 Confirm Password
-                <Field type="password" name="passwordConfirmation" />
+                <Field className="form-control" type="password" name="passwordConfirmation" />
               </label>
               <ErrorMessage name="passwordConfirmation" component="div" />
-              <button type="submit" disabled={isSubmitting}>
+              <button className="btn btn-primary btn-lg btn-block" type="submit" disabled={isSubmitting}>
                 Sign Up
               </button>
             </Form>
@@ -85,6 +85,8 @@ class LoginPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = { loginMode: true };
+
+    fetchPosts();
   }
 
   render() {
@@ -110,14 +112,15 @@ class LoginPage extends React.Component {
               <div className="card-body">
                 {form}
               </div>
-              {loginMode ? 'need an account?' : 'already have an account?' }
-              <button
-                onClick={() => this.setState({ loginMode: !loginMode })}
-                type="button"
-                className="btn btn-primary"
-              >
-                {loginMode ? 'Sign Up' : 'Login'}
-              </button>
+              <div>
+                {loginMode ? 'Need an account?' : 'Already have an account?' }
+                <button
+                  onClick={() => this.setState({ loginMode: !loginMode })}
+                  type="button"
+                  className="btn btn-secondary">
+                  {loginMode ? 'Sign Up' : 'Login'}
+                </button>
+              </div>
               <GoogleLogin
                 clientId={process.env.GOOGLE_CLIENT_ID}
                 onSuccess={receiveGoogleResponse}

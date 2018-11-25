@@ -20,7 +20,7 @@ defmodule PetbookWeb.PetView do
       species: pet.species,
       toy: pet.toy,
       treat: pet.treat,
-      owner: pet.owner_id
+      owner_id: pet.owner_id
     }
   end
 end

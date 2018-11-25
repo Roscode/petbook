@@ -10,7 +10,7 @@ defmodule Petbook.Repo.Migrations.CreatePets do
       add :gender, :string
       add :treat, :string
       add :toy, :string
-      add :owner_id, references(:users, on_delete: :nothing)
+      add :owner_id, references(:users, on_delete: :delete_all)
 
       timestamps()
     end

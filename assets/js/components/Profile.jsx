@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from 'components/Header';
+import AddPost from 'components/AddPost';
 import { createPet } from 'api';
 import {
   Formik, Form, Field, ErrorMessage,
@@ -21,41 +22,41 @@ function Profile() {
             <Form className="form signin-form">
               <label>
                 Name:
-                <Field type="text" name="name" />
+                <Field className="form-control" type="text" name="name" />
               </label>
               <ErrorMessage name="name" component="div" />
               <label>
                 Age:
-                <Field type="number" min="0" name="age" />
+                <Field className="form-control" type="number" min="0" name="age" />
               </label>
               <ErrorMessage name="age" component="div" />
               <label>
                 Birthday:
-                <Field type="date" max="2018-11-24" name="birthday" />
+                <Field className="form-control" type="date" max="2018-11-24" name="birthday" />
               </label>
               <ErrorMessage name="birthday" component="div" />
               <label>
                 Gender:
-                <Field type="text" name="gender" />
+                <Field className="form-control" type="text" name="gender" />
               </label>
               <ErrorMessage name="gender" component="div" />
               <label>
                 Species:
-                <Field type="text" name="species" />
+                <Field className="form-control" type="text" name="species" />
               </label>
               <ErrorMessage name="species" component="div" />
               <label>
                 Favorite Toy:
-                <Field type="text" name="toy" />
+                <Field className="form-control" type="text" name="toy" />
               </label>
               <ErrorMessage name="toy" component="div" />
               <label>
                 Favorite Treat:
-                <Field type="text" name="treat" />
+                <Field className="form-control" type="text" name="treat" />
               </label>
               <ErrorMessage name="treat" component="div" />
-              <button type="submit" disabled={isSubmitting}>
-                Sign In
+              <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
+                Create Pet
               </button>
             </Form>
           )}
@@ -63,6 +64,7 @@ function Profile() {
         </div>
         <div className="col-8 border">
           <Header />
+          <AddPost />
         </div>
       </div>
     </div>
