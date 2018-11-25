@@ -41,6 +41,4 @@ npm-debug.log
 # variables.
 /config/*.secret.exs
 .env
-/node_modules/
 *.deb
-package-lock.json
