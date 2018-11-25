@@ -1,7 +1,4 @@
 import React from 'react';
-import {
-  Formik, Form, Field, ErrorMessage,
-} from 'formik';
 
 function Header() {
   return (
@@ -18,8 +15,6 @@ function Header() {
           <li className="nav-item">
             <a className="nav-link" href="#!">Find Friends</a>
           </li>
-          <div>
-          </div>
         </ul>
       </div>
     </nav>

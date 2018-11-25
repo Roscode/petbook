@@ -3,7 +3,7 @@ import * as a from 'actions';
 
 const mkpath = path => `/api/v1/${path}`;
 
-export function post(path, data) {
+export function post_out(path, data) {
   return new Promise((resolve, reject) => {
     $.ajax(mkpath(path), {
       dataType: 'json',
@@ -29,17 +29,21 @@ export function get(path) {
 }
 
 export function createSession({ email, password }) {
-  return post('sessions', { email, password }).then(({ data }) => store.dispatch(a.newSession(data)));
+  return post_out('sessions', { email, password }).then(({ data }) => store.dispatch(a.newSession(data)));
 }
 
 export function createUser(user) {
-  return post('users', { user }).then(() => createSession(user));
+  return post_out('users', { user }).then(() => createSession(user));
+}
+
+export function createPost(post) {
+  return post_out('posts', { post });
 }
 
 export function googleSignIn(idToken) {
-  return post('sessions', { idToken }).then(({ data }) => store.dispatch(a.newSession(data)));
+  return post_out('sessions', { idToken }).then(({ data }) => store.dispatch(a.newSession(data)));
 }
 
 export function createPet(pet) {
-  return post('pets', { pet });
+  return post_out('pets', { pet });
 }

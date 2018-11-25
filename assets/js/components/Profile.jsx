@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from 'components/Header';
+import AddPost from 'components/AddPost';
 import { createPet } from 'api';
 import {
   Formik, Form, Field, ErrorMessage,
@@ -63,6 +64,7 @@ function Profile() {
         </div>
         <div className="col-8 border">
           <Header />
+          <AddPost />
         </div>
       </div>
     </div>

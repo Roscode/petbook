@@ -11,10 +11,10 @@ defmodule PetbookWeb.PostView do
   end
 
   def render("post.json", %{post: post}) do
-    %{id: post.id,
-      email: post.email,
-      password_hash: post.password_hash,
-      admin: post.admin}
+    %{
+      content: post.content,
+      pet_id: post.pet_id
+    }
   end
 end
 
