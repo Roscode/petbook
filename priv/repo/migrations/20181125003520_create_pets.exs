@@ -6,7 +6,7 @@ defmodule Petbook.Repo.Migrations.CreatePets do
       add :name, :string
       add :species, :string
       add :age, :integer
-      add :birthday, :naive_datetime
+      add :birthday, :date
       add :gender, :string
       add :treat, :string
       add :toy, :string

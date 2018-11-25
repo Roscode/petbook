@@ -39,3 +39,7 @@ export function createUser(user) {
 export function googleSignIn(idToken) {
   return post('sessions', { idToken }).then(({ data }) => store.dispatch(a.newSession(data)));
 }
+
+export function createPet(pet) {
+  return post('pets', { pet });
+}

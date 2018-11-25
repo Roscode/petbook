@@ -5,7 +5,7 @@ defmodule Petbook.Pets.Pet do
 
   schema "pets" do
     field :age, :integer
-    field :birthday, :naive_datetime
+    field :birthday, :date
     field :gender, :string
     field :name, :string
     field :species, :string
