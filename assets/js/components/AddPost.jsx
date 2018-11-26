@@ -19,7 +19,7 @@ function AddPost(state) {
                     createPost(values).finally(() => setSubmitting(false));
                 }}>
                 {({ isSubmitting }) => (
-                    <Form className="form create-post-form">
+                    <Form className="form create-post-form ml-3 pt-3">
                         <label>
                             Create a post!
                     <Field className="form-control" type="text" name="content" />
