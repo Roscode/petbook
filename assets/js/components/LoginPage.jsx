@@ -53,7 +53,7 @@ function SignUpForm({ onSubmit }) {
           validate={({ email, password, passwordConfirmation }) => {
             const errors = {};
             if (!(password === passwordConfirmation)) {
-              errors.passwordConfirmation = 'Passwords Don\'t Match';
+              errors.passwordConfirmation = "Passwords Don't Match";
             }
             if (!email) {
               errors.email = 'Required';

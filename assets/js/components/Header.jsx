@@ -45,7 +45,6 @@ export default connect(
   dispatch => ({
     signOut: () => {
       dispatch(a.newSession(null));
-      dispatch(a.justCreated(null));
     },
   }),
 )(Header);

@@ -45,18 +45,12 @@ export function createSession({ email, password }) {
   return sendPost('sessions', { email, password }).then(({ data }) => store.dispatch(a.newSession(data)));
 }
 
-function createFinish(data) {
-  createSession(data);
-  store.dispatch(a.justCreated(1));
-}
-
 export function createUser(user) {
-  return sendPost('users', { user }).then(() => createFinish(user));
+  return sendPost('users', { user }).then(() => createSession(user));
 }
-
 
 export function updateUser(user, userId) {
-  return put(`users/${userId}`, { user }).then(() => store.dispatch(a.justCreated(null)));
+  return put(`users/${userId}`, { user }).then(data => console.log(data)); // eslint-disable-line no-console
 }
 
 export function fetchPosts() {
