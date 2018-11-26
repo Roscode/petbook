@@ -22,6 +22,7 @@ function Profile(state) {
           >
             {({ isSubmitting }) => (
               <Form className="form signin-form">
+                <h4>Register A Pet</h4>
                 <div className="form-group">
                   <label>
                     Name:
