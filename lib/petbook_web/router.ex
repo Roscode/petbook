@@ -25,5 +25,6 @@ defmodule PetbookWeb.Router do
     resources "/sessions", SessionController, only: [:create]
     resources "/users", UserController, except: [:new, :edit]
     resources "/posts", PostController
+    resources "/likes", LikeController, except: [:new, :edit]
   end
 end

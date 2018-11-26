@@ -7,6 +7,8 @@ defmodule Petbook.Posts.Post do
 
     belongs_to :user, Petbook.Accounts.User
 
+    has_many :likes, Petbook.Likes.Like
+
     timestamps()
   end
 
