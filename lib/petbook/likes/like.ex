@@ -13,7 +13,7 @@ defmodule Petbook.Likes.Like do
   @doc false
   def changeset(like, attrs) do
     like
-    |> cast(attrs, [:likes, user_id, post_id])
-    |> validate_required([:likes, user_id, post_id])
+    |> cast(attrs, [:likes, :user_id, :post_id])
+    |> validate_required([:likes, :user_id, :post_id])
   end
 end
