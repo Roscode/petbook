@@ -16,7 +16,7 @@ defmodule PetbookWeb.Router do
   scope "/", PetbookWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/*path", PageController, :index
   end
 
   scope "/api/v1", PetbookWeb do

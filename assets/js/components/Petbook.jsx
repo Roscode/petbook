@@ -1,42 +1,17 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { GoogleLogout } from 'react-google-login';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from 'components/Header';
 import AddPost from 'components/AddPost';
-import * as a from 'actions';
+import Profile from 'components/Profile';
 
-export const Petbook = ({ signOut }) => (
-  <div>
-    <nav className="navbar navbar-dark bg-dark navbar-expand">
-      <span className="navbar-brand">Petbook</span>
-      <form className="form-inline">
-        <GoogleLogout
-          render={({ onClick }) => (
-            <button
-              type="button"
-              onClick={() => {
-                onClick();
-                signOut();
-              }}
-              className="btn btn-secondary"
-            >
-              Logout
-            </button>
-          )}
-        />
-      </form>
-    </nav>
-    <Header />
-    <AddPost />
-  </div>
+const Petbook = () => (
+  <Router>
+    <div>
+      <Header />
+      <Route path="/" exact component={Profile} />
+      <Route path="/newsfeed" component={AddPost} />
+    </div>
+  </Router>
 );
 
-export default connect(
-  state => state,
-  dispatch => ({
-    signOut: () => {
-      dispatch(a.newSession(null));
-      dispatch(a.justCreated(null));
-    },
-  }),
-)(Petbook);
+export default Petbook;
