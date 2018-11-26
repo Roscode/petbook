@@ -16,7 +16,7 @@ defmodule PetbookWeb.Router do
   scope "/", PetbookWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/*path", PageController, :index
   end
 
   scope "/api/v1", PetbookWeb do
@@ -25,5 +25,6 @@ defmodule PetbookWeb.Router do
     resources "/sessions", SessionController, only: [:create]
     resources "/users", UserController, except: [:new, :edit]
     resources "/posts", PostController
+    resources "/likes", LikeController, except: [:new, :edit]
   end
 end

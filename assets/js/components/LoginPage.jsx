@@ -9,7 +9,7 @@ function LoginForm({ onSubmit }) {
   return (
     <div className="card card-signin my-5">
       <div className="card-body">
-        <h5 className="card-title text-center">Sign In</h5>
+        <h5 className="card-title text-center">Sign In To Petbook</h5>
         <Formik
           initialValues={{ email: '', password: '' }}
           onSubmit={(values, { setSubmitting }) => {
@@ -28,14 +28,19 @@ function LoginForm({ onSubmit }) {
                 <Field className="form-control" type="password" name="password" />
               </label>
               <ErrorMessage name="password" component="div" />
-              <button className="btn btn-primary btn-lg btn-block" type="submit" disabled={isSubmitting}>
+              <button
+                className="btn btn-primary btn-lg btn-block"
+                type="submit"
+                disabled={isSubmitting}
+              >
                 Sign In
               </button>
             </Form>
           )}
         </Formik>
       </div>
-    </div>);
+    </div>
+  );
 }
 
 function SignUpForm({ onSubmit }) {
@@ -45,6 +50,15 @@ function SignUpForm({ onSubmit }) {
         <h5 className="card-title text-center">Sign Up</h5>
         <Formik
           initialValues={{ email: '', password: '', passwordConfirmation: '' }}
+          validate={({ email, password, passwordConfirmation }) => {
+            const errors = {};
+            if (!(password === passwordConfirmation)) {
+              errors.passwordConfirmation = "Passwords Don't Match";
+            }
+            if (!email) {
+              errors.email = 'Required';
+            }
+          }}
           onSubmit={(values, { setSubmitting }) => {
             onSubmit(values).finally(() => setSubmitting(false));
           }}
@@ -66,14 +80,19 @@ function SignUpForm({ onSubmit }) {
                 <Field className="form-control" type="password" name="passwordConfirmation" />
               </label>
               <ErrorMessage name="passwordConfirmation" component="div" />
-              <button className="btn btn-primary btn-lg btn-block" type="submit" disabled={isSubmitting}>
+              <button
+                className="btn btn-primary btn-lg btn-block"
+                type="submit"
+                disabled={isSubmitting}
+              >
                 Sign Up
               </button>
             </Form>
           )}
         </Formik>
       </div>
-    </div>);
+    </div>
+  );
 }
 
 function receiveGoogleResponse(googleUser) {
@@ -89,17 +108,11 @@ class LoginPage extends React.Component {
 
   render() {
     const { loginMode } = this.state;
-    const form = loginMode
-      ? (
-        <LoginForm
-          onSubmit={vals => createSession(vals)}
-        />
-      )
-      : (
-        <SignUpForm
-          onSubmit={vals => createUser(vals)}
-        />
-      );
+    const form = loginMode ? (
+      <LoginForm onSubmit={vals => createSession(vals)} />
+    ) : (
+      <SignUpForm onSubmit={vals => createUser(vals)} />
+    );
     // TODO find out if we need to have a CSP in order to load the google scripts
     // And if so, add one
     return (
@@ -109,13 +122,12 @@ class LoginPage extends React.Component {
             <div className="card my-5">
               <div className="card-body">
                 {form}
-              </div>
-              <div>
-                {loginMode ? 'Need an account?' : 'Already have an account?' }
+                {loginMode ? 'Need an account?' : 'Already have an account?'}
                 <button
                   onClick={() => this.setState({ loginMode: !loginMode })}
                   type="button"
-                  className="btn btn-secondary">
+                  className="btn btn-secondary ml-2"
+                >
                   {loginMode ? 'Sign Up' : 'Login'}
                 </button>
               </div>
@@ -127,7 +139,8 @@ class LoginPage extends React.Component {
             </div>
           </div>
         </div>
-      </div>);
+      </div>
+    );
   }
 }
 

@@ -6,40 +6,58 @@ import {
 import _ from 'lodash';
 import { connect } from 'react-redux';
 
-function AddPost(state) {
-    // TODO: Filter by friends
-    let newsfeed = _.map(state.posts.reverse(), (p) => <Post key={p.id} item={p} />)
-    return (
-        <div>
-            <Formik initialValues={{ content: '' }}
-            onSubmit={(values, { setSubmitting }) => {
-                let user_id = state.session.user_id;
-                values.user_id = user_id;
-                console.log(values);
-                createPost(values).finally(() => setSubmitting(false));
-            }}>
-            {({ isSubmitting }) => (
-                <Form className="form create-post-form">
-                <label>
-                    Create a post!
-                    <Field className="form-control" type="text" name="content"/>
-                </label>
-                <ErrorMessage name="content" component="div"/>
-                <button type="submit" className="btn btn-secondary" disabled={isSubmitting}>Create Post!</button>
-                </Form>
-                
-            )}
-            </Formik>
-            <div>
-                {newsfeed}
-            </div>
-        </div>
-    )
+function AddPost({ userId, posts }) {
+  return (
+    <div>
+      <Formik
+        initialValues={{ user_id: userId, content: '' }}
+        onSubmit={(values, { setSubmitting }) => {
+          createPost(values).finally(() => setSubmitting(false));
+        }}
+      >
+        {({ isSubmitting }) => (
+          <Form className="form create-post-form ml-3 pt-3">
+            <label>
+              Create a post!
+              <Field className="form-control" type="text" name="content" />
+            </label>
+            <ErrorMessage name="content" component="div" />
+            <button type="submit" className="btn btn-secondary" disabled={isSubmitting}>
+              Create Post!
+            </button>
+          </Form>
+        )}
+      </Formik>
+      <div>
+        {// TODO filter by friends, order by created date
+        _.map(posts.reverse(), p => (
+          <Post key={p.id} {...p} />
+        ))}
+      </div>
+    </div>
+  );
 }
 
-export default connect(state => state)(AddPost);
+export default connect(({ session: { user_id: userId }, posts }) => ({
+  userId,
+  posts,
+}))(AddPost);
 
-function Post(props) {
-    let {item, key} = props;
-    return <div key={key}>{item.content}</div>
+// TODO replace userId with author name by preloading users
+function Post({ content, user_id: userId, likes }) {
+  return (
+    <div className="card">
+      <div className="card-body">
+        <h5 className="card-title">{userId}</h5>
+        <div className="card-text ml-4">{content}</div>
+        <div className="card-text ml-4">
+          Likes
+          {likes}
+        </div>
+        <button type="submit" className="btn btn-primary ml-4">
+          Like
+        </button>
+      </div>
+    </div>
+  );
 }

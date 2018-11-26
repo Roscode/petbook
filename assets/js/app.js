@@ -2,7 +2,7 @@
 // We need to import the CSS so that webpack will load it.
 // The MiniCssExtractPlugin is used to separate it out into
 // its own CSS file.
-import css from "../css/app.scss"
+import 'filepond/dist/filepond.min.css';
 
 // webpack automatically bundles all modules in your
 // entry points. Those entry points can be configured
@@ -10,11 +10,10 @@ import css from "../css/app.scss"
 //
 // Import dependencies
 //
-import "phoenix_html";
+import 'phoenix_html';
 import jQuery from 'jquery';
-window.jQuery = window.$ = jQuery;
-import "bootstrap"
-import _ from "lodash";
+import 'bootstrap';
+import _ from 'lodash';
 
 // Import local files
 //
@@ -27,13 +26,17 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import Root from 'root';
 import * as api from 'api';
+import css from '../css/app.scss';
+
+window.jQuery = window.$ = jQuery;
 
 window.onload = () => {
-    api.fetchPosts();
-    let node = document.getElementById('root');
-    ReactDOM.render(
-        <Provider store={store}>
-            <Root />
-        </Provider>, node,
-    );
-}
+  api.fetchPosts();
+  const node = document.getElementById('root');
+  ReactDOM.render(
+    <Provider store={store}>
+      <Root />
+    </Provider>,
+    node,
+  );
+};

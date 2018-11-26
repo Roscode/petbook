@@ -3,7 +3,7 @@ import * as a from 'actions';
 
 const mkpath = path => `/api/v1/${path}`;
 
-export function post_out(path, data) {
+export function sendPost(path, data) {
   return new Promise((resolve, reject) => {
     $.ajax(mkpath(path), {
       dataType: 'json',
@@ -42,31 +42,25 @@ export function put(path, data) {
 }
 
 export function createSession({ email, password }) {
-  return post_out('sessions', { email, password }).then(({ data }) => store.dispatch(a.newSession(data)));
+  return sendPost('sessions', { email, password }).then(({ data }) => store.dispatch(a.newSession(data)));
 }
 
 export function createUser(user) {
-  return post_out('users', { user }).then(() => createFinish(user));
+  return sendPost('users', { user }).then(() => createSession(user));
 }
 
-function createFinish(data) {
-  createSession(data);
-  store.dispatch(a.justCreated(1));
-}
-
-export function updateUser(user, user_id) {
-  let path = 'users'.concat('/', user_id)
-  return put(path, { user }).then(() => store.dispatch(a.justCreated(null)));
-}
-
-export function createPost(post) {
-  return post_out('posts', { post }).then(({ data }) => fetchPosts());;
+export function updateUser(user, userId) {
+  return put(`users/${userId}`, { user }).then(data => console.log(data)); // eslint-disable-line no-console
 }
 
 export function fetchPosts() {
   return get('posts').then(({ data }) => store.dispatch(a.postList(data)));
 }
 
+export function createPost(post) {
+  return sendPost('posts', { post }).then(() => fetchPosts());
+}
+
 export function googleSignIn(idToken) {
-  return post_out('sessions', { idToken }).then(({ data }) => store.dispatch(a.newSession(data)));
+  return sendPost('sessions', { idToken }).then(({ data }) => store.dispatch(a.newSession(data)));
 }

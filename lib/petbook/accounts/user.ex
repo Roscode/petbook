@@ -19,13 +19,27 @@ defmodule Petbook.Accounts.User do
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
 
+    has_many :likes, Petbook.Likes.Like
+
     timestamps()
   end
 
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:email, :password, :password_confirmation, :google_id, :age, :birthday, :gender, :name, :species, :toy, :treat])
+    |> cast(attrs, [
+      :email,
+      :password,
+      :password_confirmation,
+      :google_id,
+      :age,
+      :birthday,
+      :gender,
+      :name,
+      :species,
+      :toy,
+      :treat
+    ])
     |> unique_constraint(:email)
     |> hash_password()
     |> validate_required([:email])
@@ -38,7 +52,7 @@ defmodule Petbook.Accounts.User do
     if Enum.any?(fields, &present?(changeset, &1)) do
       changeset
     else
-      add_error(changeset, hd(fields), "One of the following must be present: #{inspect fields}")
+      add_error(changeset, hd(fields), "One of the following must be present: #{inspect(fields)}")
     end
   end
 
