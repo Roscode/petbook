@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import * as c from 'constants';
+import * as c from 'constants.js';
 
 const replacer = (actionType, initialValue) => (state = initialValue, { type, payload }) => {
   switch (type) {
