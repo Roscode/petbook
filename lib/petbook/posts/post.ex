@@ -6,7 +6,7 @@ defmodule Petbook.Posts.Post do
   schema "posts" do
     field :content, :string
 
-    belongs_to :pet, Petbook.Pets.Pet
+    belongs_to :user, Petbook.Accounts.User
 
     timestamps()
   end

@@ -47,7 +47,3 @@ export function fetchPosts() {
 export function googleSignIn(idToken) {
   return post_out('sessions', { idToken }).then(({ data }) => store.dispatch(a.newSession(data)));
 }
-
-export function createPet(pet) {
-  return post_out('pets', { pet });
-}

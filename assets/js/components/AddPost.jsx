@@ -11,8 +11,9 @@ function AddPost(state) {
     let newsfeed = _.map(state.posts.reverse(), (p) => <Post key={p.id} item={p} />)
     return (
         <div>
-            <Formik initialValues={{ content: '', pet_id: 1 }}
+            <Formik initialValues={{ content: '' }}
             onSubmit={(values, { setSubmitting }) => {
+
                 createPost(values).finally(() => setSubmitting(false));
             }}>
             {({ isSubmitting }) => (

@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from 'components/Header';
 import AddPost from 'components/AddPost';
-import { createPet } from 'api';
 import {
   Formik, Form, Field, ErrorMessage,
 } from 'formik';
@@ -12,9 +11,10 @@ function Profile() {
       <div className="row">
         <div className="col-4 border" align="center">
         <Formik
-          initialValues={{ owner_id: 1, name: '', age: 0, birthday: '1990-08-08', gender: '',
+          initialValues={{ name: '', age: 0, birthday: '1990-08-08', gender: '',
         species: '', toy: '', treat: '' }}
           onSubmit={(values, { setSubmitting }) => {
+            
             createPet(values).finally(() => setSubmitting(false));
           }}
         >
