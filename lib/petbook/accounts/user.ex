@@ -7,6 +7,7 @@ defmodule Petbook.Accounts.User do
     field :email, :string
     field :password_hash, :string
     field :google_id, :string
+
     field :age, :integer
     field :birthday, :date
     field :gender, :string
@@ -24,7 +25,7 @@ defmodule Petbook.Accounts.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:email, :password, :password_confirmation, :google_id])
+    |> cast(attrs, [:email, :password, :password_confirmation, :google_id, :age, :birthday, :gender, :name, :species, :toy, :treat])
     |> unique_constraint(:email)
     |> hash_password()
     |> validate_required([:email])

@@ -28,17 +28,35 @@ export function get(path) {
   });
 }
 
-function sessionFinish(data) {
-  store.dispatch(a.justCreated(1));
-  store.dispatch(a.newSession(data));
+export function put(path, data) {
+  return new Promise((resolve, reject) => {
+    $.ajax(mkpath(path), {
+      dataType: 'json',
+      contentType: 'application/json; charset=UTF-8',
+      method: 'put',
+      data: JSON.stringify(data),
+      success: resolve,
+      faliure: reject,
+    });
+  });
 }
 
 export function createSession({ email, password }) {
-  return post_out('sessions', { email, password }).then(({ data }) => sessionFinish(data));
+  return post_out('sessions', { email, password }).then(({ data }) => store.dispatch(a.newSession(data)));
 }
 
 export function createUser(user) {
-  return post_out('users', { user }).then(() => createSession(user));
+  return post_out('users', { user }).then(() => createFinish(user));
+}
+
+function createFinish(data) {
+  createSession(data);
+  store.dispatch(a.justCreated(1));
+}
+
+export function updateUser(user, user_id) {
+  let path = 'users'.concat('/', user_id)
+  return put(path, { user }).then(() => store.dispatch(a.justCreated(null)));
 }
 
 export function createPost(post) {

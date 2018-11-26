@@ -1,5 +1,5 @@
 import React from 'react';
-import { googleSignIn, createSession, createUser, fetchPosts } from 'api';
+import { googleSignIn, createSession, createUser } from 'api';
 import {
   Formik, Form, Field, ErrorMessage,
 } from 'formik';
@@ -85,8 +85,6 @@ class LoginPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = { loginMode: true };
-
-    fetchPosts();
   }
 
   render() {

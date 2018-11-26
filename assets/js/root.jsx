@@ -5,6 +5,7 @@ import LoginPage from 'components/LoginPage';
 import Profile from 'components/Profile';
 
 const Root = (state) => {
+  
   if (state.session && !state.justCreated) {
     return <Petbook />;
   } else if (state.justCreated) {
