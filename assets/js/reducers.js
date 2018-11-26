@@ -12,7 +12,7 @@ const replacer = (actionType, initialValue) => (state = initialValue, { type, pa
 
 const rootReducer = combineReducers({
   session: replacer(c.NEW_SESSION, null),
-  posts: replacer(c.POST_LIST, null),
+  posts: replacer(c.POST_LIST, []),
 });
 
 export default rootReducer;
