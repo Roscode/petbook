@@ -5,16 +5,13 @@ import LoginPage from 'components/LoginPage';
 import Profile from 'components/Profile';
 
 const Root = (state) => {
-  
   if (state.session && !state.justCreated) {
     return <Petbook />;
-  } else if (state.justCreated) {
-    return <Profile />;
-  } else {
-    return <LoginPage />;
   }
+  if (state.justCreated) {
+    return <Profile />;
+  }
+  return <LoginPage />;
 };
 
-export default connect(
-  ({ session, justCreated }) => ({ session, justCreated }),
-)(Root);
+export default connect(({ session, justCreated }) => ({ session, justCreated }))(Root);

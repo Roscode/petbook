@@ -28,14 +28,19 @@ function LoginForm({ onSubmit }) {
                 <Field className="form-control" type="password" name="password" />
               </label>
               <ErrorMessage name="password" component="div" />
-              <button className="btn btn-primary btn-lg btn-block" type="submit" disabled={isSubmitting}>
+              <button
+                className="btn btn-primary btn-lg btn-block"
+                type="submit"
+                disabled={isSubmitting}
+              >
                 Sign In
               </button>
             </Form>
           )}
         </Formik>
       </div>
-    </div>);
+    </div>
+  );
 }
 
 function SignUpForm({ onSubmit }) {
@@ -66,14 +71,19 @@ function SignUpForm({ onSubmit }) {
                 <Field className="form-control" type="password" name="passwordConfirmation" />
               </label>
               <ErrorMessage name="passwordConfirmation" component="div" />
-              <button className="btn btn-primary btn-lg btn-block" type="submit" disabled={isSubmitting}>
+              <button
+                className="btn btn-primary btn-lg btn-block"
+                type="submit"
+                disabled={isSubmitting}
+              >
                 Sign Up
               </button>
             </Form>
           )}
         </Formik>
       </div>
-    </div>);
+    </div>
+  );
 }
 
 function receiveGoogleResponse(googleUser) {
@@ -89,21 +99,14 @@ class LoginPage extends React.Component {
 
   render() {
     const { loginMode } = this.state;
-    const form = loginMode
-      ? (
-        <LoginForm
-          onSubmit={vals => createSession(vals)}
-        />
-      )
-      : (
-        <SignUpForm
-          onSubmit={vals => createUser(vals)}
-        />
-      );
+    const form = loginMode ? (
+      <LoginForm onSubmit={vals => createSession(vals)} />
+    ) : (
+      <SignUpForm onSubmit={vals => createUser(vals)} />
+    );
     // TODO find out if we need to have a CSP in order to load the google scripts
     // And if so, add one
     return (
-
       <div className="container">
         <div className="row">
           <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -114,7 +117,8 @@ class LoginPage extends React.Component {
                 <button
                   onClick={() => this.setState({ loginMode: !loginMode })}
                   type="button"
-                  className="btn btn-secondary ml-2">
+                  className="btn btn-secondary ml-2"
+                >
                   {loginMode ? 'Sign Up' : 'Login'}
                 </button>
               </div>
@@ -126,7 +130,8 @@ class LoginPage extends React.Component {
             </div>
           </div>
         </div>
-      </div>);
+      </div>
+    );
   }
 }
 

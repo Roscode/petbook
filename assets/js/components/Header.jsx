@@ -6,13 +6,19 @@ function Header() {
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
           <li className="nav-item">
-            <a className="nav-link" href="#!">Newsfeed</a>
+            <a className="nav-link" href="#!">
+              Newsfeed
+            </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#!">Activity</a>
+            <a className="nav-link" href="#!">
+              Activity
+            </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#!">Find Friends</a>
+            <a className="nav-link" href="#!">
+              Find Friends
+            </a>
           </li>
         </ul>
       </div>
