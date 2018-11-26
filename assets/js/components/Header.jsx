@@ -2,7 +2,6 @@ import React from 'react';
 
 function Header() {
   return (
-  // if this is the current user's profile
     <nav className="navbar navbar-light navbar-expand border-bottom">
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
@@ -18,8 +17,6 @@ function Header() {
         </ul>
       </div>
     </nav>
-
-  // else include Add Friend Button
   );
 }
 

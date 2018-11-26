@@ -13,7 +13,7 @@ defmodule PetbookWeb.PostView do
   def render("post.json", %{post: post}) do
     %{
       content: post.content,
-      pet_id: post.pet_id
+      user_id: post.user_id
     }
   end
 end

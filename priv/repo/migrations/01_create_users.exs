@@ -7,6 +7,13 @@ defmodule Petbook.Repo.Migrations.CreateUsers do
       add :password_hash, :string
       add :admin, :boolean, default: false, null: false
       add :google_id, :string
+      add :age, :integer
+      add :birthday, :date
+      add :gender, :string
+      add :name, :string
+      add :species, :string
+      add :toy, :string
+      add :treat, :string
 
       timestamps()
     end

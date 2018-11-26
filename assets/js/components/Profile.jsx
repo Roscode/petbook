@@ -1,21 +1,21 @@
 import React from 'react';
-import Header from 'components/Header';
-import AddPost from 'components/AddPost';
-import { createPet } from 'api';
 import {
   Formik, Form, Field, ErrorMessage,
 } from 'formik';
+import { connect } from 'react-redux';
+import { updateUser } from 'api';
 
-function Profile() {
+function Profile(state) {
   return (
     <div className="container">
       <div className="row">
         <div className="col-4 border" align="center">
         <Formik
-          initialValues={{ owner_id: 1, name: '', age: 0, birthday: '1990-08-08', gender: '',
+          initialValues={{ name: '', age: 0, birthday: '1990-08-08', gender: '',
         species: '', toy: '', treat: '' }}
           onSubmit={(values, { setSubmitting }) => {
-            createPet(values).finally(() => setSubmitting(false));
+            let user_id = state.session.user_id;
+            updateUser(values, user_id).finally(() => setSubmitting(false));
           }}
         >
           {({ isSubmitting }) => (
@@ -62,13 +62,9 @@ function Profile() {
           )}
         </Formik>
         </div>
-        <div className="col-8 border">
-          <Header />
-          <AddPost />
-        </div>
       </div>
     </div>
   );
 }
 
-export default Profile;
+export default connect(state => state)(Profile);
