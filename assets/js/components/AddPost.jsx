@@ -11,12 +11,15 @@ function AddPost(state) {
     let newsfeed = _.map(state.posts.reverse(), (p) => <Post key={p.id} item={p} />)
     return (
         <div>
-            <Formik initialValues={{ content: '', pet_id: 1 }}
+            <Formik initialValues={{ content: '' }}
                 onSubmit={(values, { setSubmitting }) => {
+                    let user_id = state.session.user_id;
+                    values.user_id = user_id;
+                    console.log(values);
                     createPost(values).finally(() => setSubmitting(false));
                 }}>
                 {({ isSubmitting }) => (
-                    <Form className="form create-post-form ml-4 mt-2">
+                    <Form className="form create-post-form">
                         <label>
                             Create a post!
                     <Field className="form-control" type="text" name="content" />

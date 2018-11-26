@@ -26,8 +26,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import Root from 'root';
+import * as api from 'api';
 
 window.onload = () => {
+    api.fetchPosts();
     let node = document.getElementById('root');
     ReactDOM.render(
         <Provider store={store}>

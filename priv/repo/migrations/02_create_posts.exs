@@ -4,11 +4,11 @@ defmodule Petbook.Repo.Migrations.CreatePosts do
   def change do
     create table(:posts) do
       add :content, :text
-      add :pet_id, references(:pets, on_delete: :delete_all)
+      add :user_id, references(:users, on_delete: :delete_all)
 
       timestamps()
     end
 
-    create index(:posts, [:pet_id])
+    create index(:posts, [:user_id])
   end
 end
