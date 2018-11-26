@@ -13,7 +13,7 @@ function LoginForm({ onSubmit }) {
         <Formik
           initialValues={{ email: '', password: '' }}
           onSubmit={(values, { setSubmitting }) => {
-            onSubmit(values).finally(() => setSubmitting(false));
+            onSubmit(values).then(() => console.log('heyo')).catch(() => console.log('fuuuuuuk')).finally(() => setSubmitting(false));
           }}
         >
           {({ isSubmitting }) => (
@@ -96,8 +96,8 @@ function SignUpForm({ onSubmit }) {
 }
 
 function receiveGoogleResponse(googleUser) {
-  const { id_token: idToken } = googleUser.getAuthResponse(); // water
-  googleSignIn(idToken);
+  // const { id_token: idToken } = googleUser.getAuthResponse(); // water
+  // googleSignIn(idToken);
 }
 
 class LoginPage extends React.Component {
@@ -111,8 +111,8 @@ class LoginPage extends React.Component {
     const form = loginMode ? (
       <LoginForm onSubmit={vals => createSession(vals)} />
     ) : (
-      <SignUpForm onSubmit={vals => createUser(vals)} />
-    );
+        <SignUpForm onSubmit={vals => createUser(vals)} />
+      );
     // TODO find out if we need to have a CSP in order to load the google scripts
     // And if so, add one
     return (
@@ -131,11 +131,7 @@ class LoginPage extends React.Component {
                   {loginMode ? 'Sign Up' : 'Login'}
                 </button>
               </div>
-              <GoogleLogin
-                clientId={process.env.GOOGLE_CLIENT_ID}
-                onSuccess={receiveGoogleResponse}
-                onFailure={receiveGoogleResponse}
-              />
+
             </div>
           </div>
         </div>

@@ -4,6 +4,7 @@ import Petbook from 'components/Petbook';
 import LoginPage from 'components/LoginPage';
 
 const Root = (state) => {
+  console.log(state);
   if (state.session) {
     return <Petbook />;
   }
