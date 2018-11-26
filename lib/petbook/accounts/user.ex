@@ -7,6 +7,13 @@ defmodule Petbook.Accounts.User do
     field :email, :string
     field :password_hash, :string
     field :google_id, :string
+    field :age, :integer
+    field :birthday, :date
+    field :gender, :string
+    field :name, :string
+    field :species, :string
+    field :toy, :string
+    field :treat, :string
 
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true

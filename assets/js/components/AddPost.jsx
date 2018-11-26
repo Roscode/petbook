@@ -13,7 +13,9 @@ function AddPost(state) {
         <div>
             <Formik initialValues={{ content: '' }}
             onSubmit={(values, { setSubmitting }) => {
-
+                let user_id = state.session.user_id;
+                values.user_id = user_id;
+                console.log(values);
                 createPost(values).finally(() => setSubmitting(false));
             }}>
             {({ isSubmitting }) => (

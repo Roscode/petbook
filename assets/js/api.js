@@ -28,8 +28,13 @@ export function get(path) {
   });
 }
 
+function sessionFinish(data) {
+  store.dispatch(a.justCreated(1));
+  store.dispatch(a.newSession(data));
+}
+
 export function createSession({ email, password }) {
-  return post_out('sessions', { email, password }).then(({ data }) => store.dispatch(a.newSession(data)));
+  return post_out('sessions', { email, password }).then(({ data }) => sessionFinish(data));
 }
 
 export function createUser(user) {

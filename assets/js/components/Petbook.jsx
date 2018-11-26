@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { GoogleLogout } from 'react-google-login';
-import Profile from 'components/Profile';
-import { newSession } from 'actions';
+import Header from 'components/Header';
+import AddPost from 'components/AddPost'
+import * as a from 'actions';
 
 export const Petbook = ({ signOut }) => (
   <div>
@@ -26,11 +27,15 @@ Petbook
         />
       </form>
     </nav>
-    <Profile />
+    <Header/>
+    <AddPost/>
   </div>
 );
 
 
 export default connect(state => state, dispatch => ({
-  signOut: () => dispatch(newSession(null)),
+  signOut: () => {
+    dispatch(a.newSession(null));
+    dispatch(a.justCreated(null));
+  },
 }))(Petbook);
