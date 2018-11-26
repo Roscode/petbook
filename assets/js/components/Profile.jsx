@@ -22,49 +22,49 @@ function Profile(state) {
           >
             {({ isSubmitting }) => (
               <Form className="form signin-form">
-                <div class="form-group">
+                <div className="form-group">
                   <label>
                     Name:
                 <Field className="form-control" type="text" name="name" />
                   </label>
                 </div>
                 <ErrorMessage name="name" component="div" />
-                <div class="form-group">
+                <div className="form-group">
                   <label>
                     Age:
                 <Field className="form-control" type="number" min="0" name="age" />
                   </label>
                 </div>
                 <ErrorMessage name="age" component="div" />
-                <div class="form-group">
+                <div className="form-group">
                   <label>
                     Birthday:
                 <Field className="form-control" type="date" max="2018-11-24" name="birthday" />
                   </label>
                 </div>
                 <ErrorMessage name="birthday" component="div" />
-                <div class="form-group">
+                <div className="form-group">
                   <label>
                     Gender:
                 <Field className="form-control" type="text" name="gender" />
                   </label>
                 </div>
                 <ErrorMessage name="gender" component="div" />
-                <div class="form-group">
+                <div className="form-group">
                   <label>
                     Species:
                 <Field className="form-control" type="text" name="species" />
                   </label>
                 </div>
                 <ErrorMessage name="species" component="div" />
-                <div class="form-group">
+                <div className="form-group">
                   <label>
                     Favorite Toy:
                 <Field className="form-control" type="text" name="toy" />
                   </label>
                 </div>
                 <ErrorMessage name="toy" component="div" />
-                <div class="form-group">
+                <div className="form-group">
                   <label>
                     Favorite Treat:
                 <Field className="form-control" type="text" name="treat" />
