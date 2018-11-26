@@ -105,19 +105,18 @@ class LoginPage extends React.Component {
     // TODO find out if we need to have a CSP in order to load the google scripts
     // And if so, add one
     return (
+
       <div className="container">
         <div className="row">
           <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div className="card my-5">
               <div className="card-body">
                 {form}
-              </div>
-              <div>
-                {loginMode ? 'Need an account?' : 'Already have an account?' }
+                {loginMode ? 'Need an account?' : 'Already have an account?'}
                 <button
                   onClick={() => this.setState({ loginMode: !loginMode })}
                   type="button"
-                  className="btn btn-secondary">
+                  className="btn btn-secondary ml-2">
                   {loginMode ? 'Sign Up' : 'Login'}
                 </button>
               </div>

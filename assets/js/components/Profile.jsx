@@ -11,56 +11,73 @@ function Profile() {
     <div className="container">
       <div className="row">
         <div className="col-4 border" align="center">
-        <Formik
-          initialValues={{ owner_id: 1, name: '', age: 0, birthday: '1990-08-08', gender: '',
-        species: '', toy: '', treat: '' }}
-          onSubmit={(values, { setSubmitting }) => {
-            createPet(values).finally(() => setSubmitting(false));
-          }}
-        >
-          {({ isSubmitting }) => (
-            <Form className="form signin-form">
-              <label>
-                Name:
+          <Formik
+            initialValues={{
+              owner_id: 1, name: '', age: 0, birthday: '1990-08-08', gender: '',
+              species: '', toy: '', treat: ''
+            }}
+            onSubmit={(values, { setSubmitting }) => {
+              createPet(values).finally(() => setSubmitting(false));
+            }}
+          >
+            {({ isSubmitting }) => (
+              <Form className="form signin-form">
+                <div class="form-group">
+                  <label>
+                    Name:
                 <Field className="form-control" type="text" name="name" />
-              </label>
-              <ErrorMessage name="name" component="div" />
-              <label>
-                Age:
+                  </label>
+                </div>
+                <ErrorMessage name="name" component="div" />
+                <div class="form-group">
+                  <label>
+                    Age:
                 <Field className="form-control" type="number" min="0" name="age" />
-              </label>
-              <ErrorMessage name="age" component="div" />
-              <label>
-                Birthday:
+                  </label>
+                </div>
+                <ErrorMessage name="age" component="div" />
+                <div class="form-group">
+                  <label>
+                    Birthday:
                 <Field className="form-control" type="date" max="2018-11-24" name="birthday" />
-              </label>
-              <ErrorMessage name="birthday" component="div" />
-              <label>
-                Gender:
+                  </label>
+                </div>
+                <ErrorMessage name="birthday" component="div" />
+                <div class="form-group">
+                  <label>
+                    Gender:
                 <Field className="form-control" type="text" name="gender" />
-              </label>
-              <ErrorMessage name="gender" component="div" />
-              <label>
-                Species:
+                  </label>
+                </div>
+                <ErrorMessage name="gender" component="div" />
+                <div class="form-group">
+                  <label>
+                    Species:
                 <Field className="form-control" type="text" name="species" />
-              </label>
-              <ErrorMessage name="species" component="div" />
-              <label>
-                Favorite Toy:
+                  </label>
+                </div>
+                <ErrorMessage name="species" component="div" />
+                <div class="form-group">
+                  <label>
+                    Favorite Toy:
                 <Field className="form-control" type="text" name="toy" />
-              </label>
-              <ErrorMessage name="toy" component="div" />
-              <label>
-                Favorite Treat:
+                  </label>
+                </div>
+                <ErrorMessage name="toy" component="div" />
+                <div class="form-group">
+                  <label>
+                    Favorite Treat:
                 <Field className="form-control" type="text" name="treat" />
-              </label>
-              <ErrorMessage name="treat" component="div" />
-              <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
-                Create Pet
+                  </label>
+                </div>
+                <ErrorMessage name="treat" component="div" />
+
+                <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
+                  Create Pet
               </button>
-            </Form>
-          )}
-        </Formik>
+              </Form>
+            )}
+          </Formik>
         </div>
         <div className="col-8 border">
           <Header />
