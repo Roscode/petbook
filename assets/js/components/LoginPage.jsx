@@ -1,8 +1,9 @@
 import React from 'react';
-import { createSession, createUser } from 'api';
+import { googleSignIn, createSession, createUser } from 'api';
 import {
   Formik, Form, Field, ErrorMessage,
 } from 'formik';
+import GoogleLogin from 'react-google-login';
 
 function LoginForm({ onSubmit }) {
   return (
@@ -19,15 +20,15 @@ function LoginForm({ onSubmit }) {
             <Form className="form signin-form">
               <label>
                 Email:
-                <Field type="email" name="email" />
+                <Field className="form-control" type="email" name="email" />
               </label>
               <ErrorMessage name="email" component="div" />
               <label>
                 Password:
-                <Field type="password" name="password" />
+                <Field className="form-control" type="password" name="password" />
               </label>
               <ErrorMessage name="password" component="div" />
-              <button type="submit" disabled={isSubmitting}>
+              <button className="btn btn-primary btn-lg btn-block" type="submit" disabled={isSubmitting}>
                 Sign In
               </button>
             </Form>
@@ -52,20 +53,20 @@ function SignUpForm({ onSubmit }) {
             <Form component="form">
               <label>
                 Email:
-                <Field type="email" name="email" />
+                <Field className="form-control" type="email" name="email" />
               </label>
               <ErrorMessage name="email" component="div" />
               <label>
                 Password:
-                <Field type="password" name="password" />
+                <Field className="form-control" type="password" name="password" />
               </label>
               <ErrorMessage name="password" component="div" />
               <label htmlFor="signUpPasswordConfirmation">
                 Confirm Password
-                <Field type="password" name="passwordConfirmation" />
+                <Field className="form-control" type="password" name="passwordConfirmation" />
               </label>
               <ErrorMessage name="passwordConfirmation" component="div" />
-              <button type="submit" disabled={isSubmitting}>
+              <button className="btn btn-primary btn-lg btn-block" type="submit" disabled={isSubmitting}>
                 Sign Up
               </button>
             </Form>
@@ -73,6 +74,11 @@ function SignUpForm({ onSubmit }) {
         </Formik>
       </div>
     </div>);
+}
+
+function receiveGoogleResponse(googleUser) {
+  const { id_token: idToken } = googleUser.getAuthResponse(); // water
+  googleSignIn(idToken);
 }
 
 class LoginPage extends React.Component {
@@ -94,6 +100,8 @@ class LoginPage extends React.Component {
           onSubmit={vals => createUser(vals)}
         />
       );
+    // TODO find out if we need to have a CSP in order to load the google scripts
+    // And if so, add one
     return (
       <div className="container">
         <div className="row">
@@ -102,14 +110,20 @@ class LoginPage extends React.Component {
               <div className="card-body">
                 {form}
               </div>
-              {loginMode ? 'already have an account' : 'an account'}
-              <button
-                onClick={() => this.setState({ loginMode: !loginMode })}
-                type="button"
-                className="btn btn-primary"
-              >
-                {loginMode ? 'Sign Up' : 'Login'}
-              </button>
+              <div>
+                {loginMode ? 'Need an account?' : 'Already have an account?' }
+                <button
+                  onClick={() => this.setState({ loginMode: !loginMode })}
+                  type="button"
+                  className="btn btn-secondary">
+                  {loginMode ? 'Sign Up' : 'Login'}
+                </button>
+              </div>
+              <GoogleLogin
+                clientId={process.env.GOOGLE_CLIENT_ID}
+                onSuccess={receiveGoogleResponse}
+                onFailure={receiveGoogleResponse}
+              />
             </div>
           </div>
         </div>

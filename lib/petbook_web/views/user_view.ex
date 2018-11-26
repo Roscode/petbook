@@ -11,9 +11,18 @@ defmodule PetbookWeb.UserView do
   end
 
   def render("user.json", %{user: user}) do
-    %{id: user.id,
+    %{
+      id: user.id,
       email: user.email,
       password_hash: user.password_hash,
-      admin: user.admin}
+      admin: user.admin,
+      age: user.age,
+      birthday: user.birthday,
+      gender: user.gender,
+      name: user.name,
+      species: user.species,
+      toy: user.toy,
+      treat: user.treat
+    }
   end
 end

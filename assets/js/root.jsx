@@ -1,15 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PetBook from 'components/PetBook';
+import Petbook from 'components/Petbook';
 import LoginPage from 'components/LoginPage';
+import Profile from 'components/Profile';
 
 const Root = (state) => {
-  if (state.session) {
-    return <PetBook />;
+  
+  if (state.session && !state.justCreated) {
+    return <Petbook />;
+  } else if (state.justCreated) {
+    return <Profile />;
+  } else {
+    return <LoginPage />;
   }
-  return <LoginPage />;
 };
 
 export default connect(
-  ({ session }) => ({ session }),
+  ({ session, justCreated }) => ({ session, justCreated }),
 )(Root);
