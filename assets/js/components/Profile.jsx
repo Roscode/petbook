@@ -5,7 +5,7 @@ import {
 import { connect } from 'react-redux';
 import { updateUser } from 'api';
 
-function Profile(state) {
+function Profile({ userId }) {
   return (
     <div className="container">
       <div className="row">
@@ -21,8 +21,7 @@ function Profile(state) {
               treat: '',
             }}
             onSubmit={(values, { setSubmitting }) => {
-              const user_id = state.session.user_id;
-              updateUser(values, user_id).finally(() => setSubmitting(false));
+              updateUser(values, userId).finally(() => setSubmitting(false));
             }}
           >
             {({ isSubmitting }) => (
@@ -90,4 +89,4 @@ function Profile(state) {
   );
 }
 
-export default connect(state => state)(Profile);
+export default connect(({ session: { user_id: userId } }) => ({ userId }))(Profile);

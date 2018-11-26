@@ -6,17 +6,12 @@ import {
 import _ from 'lodash';
 import { connect } from 'react-redux';
 
-function AddPost(state) {
-  // TODO: Filter by friends
-  const newsfeed = _.map(state.posts.reverse(), p => <Post key={p.id} item={p} />);
+function AddPost({ userId, posts }) {
   return (
     <div>
       <Formik
-        initialValues={{ content: '' }}
+        initialValues={{ user_id: userId, content: '' }}
         onSubmit={(values, { setSubmitting }) => {
-          const user_id = state.session.user_id;
-          values.user_id = user_id;
-          // console.log(values);
           createPost(values).finally(() => setSubmitting(false));
         }}
       >
@@ -33,24 +28,31 @@ function AddPost(state) {
           </Form>
         )}
       </Formik>
-      <div>{newsfeed}</div>
+      <div>
+        {// TODO filter by friends, order by created date
+        _.map(posts.reverse(), p => (
+          <Post key={p.id} {...p} />
+        ))}
+      </div>
     </div>
   );
 }
 
-export default connect(state => state)(AddPost);
+export default connect(({ session: { user_id: userId }, posts }) => ({
+  userId,
+  posts,
+}))(AddPost);
 
-function Post(props) {
-  const { item, key } = props;
-  // console.log(item)
+// TODO replace userId with author name by preloading users
+function Post({ content, user_id: userId, likes }) {
   return (
-    <div className="card" key={key}>
+    <div className="card">
       <div className="card-body">
-        <h5 className="card-title">{item.user_id}</h5>
-        <div className="card-text ml-4">{item.content}</div>
+        <h5 className="card-title">{userId}</h5>
+        <div className="card-text ml-4">{content}</div>
         <div className="card-text ml-4">
           Likes
-          {item.likes}
+          {likes}
         </div>
         <button type="submit" className="btn btn-primary ml-4">
           Like

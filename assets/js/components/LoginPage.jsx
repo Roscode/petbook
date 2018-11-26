@@ -50,6 +50,15 @@ function SignUpForm({ onSubmit }) {
         <h5 className="card-title text-center">Sign Up</h5>
         <Formik
           initialValues={{ email: '', password: '', passwordConfirmation: '' }}
+          validate={({ email, password, passwordConfirmation }) => {
+            const errors = {};
+            if (!(password === passwordConfirmation)) {
+              errors.passwordConfirmation = 'Passwords Don\'t Match';
+            }
+            if (!email) {
+              errors.email = 'Required';
+            }
+          }}
           onSubmit={(values, { setSubmitting }) => {
             onSubmit(values).finally(() => setSubmitting(false));
           }}
