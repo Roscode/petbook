@@ -1,4 +1,4 @@
-import * as c from 'constants.js';
+import * as c from "constants.js";
 
 export const mkSimpleAction = type => payload => ({ type, payload });
 export const newSession = mkSimpleAction(c.NEW_SESSION);
