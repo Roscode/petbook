@@ -46,6 +46,8 @@ function Post(props) {
         <div className="card-body" >
             <h5 className="card-title">{item.user_id}</h5>
             <div className="card-text ml-4">{item.content}</div>
+            <div className="card-text ml-4">Likes {item.likes}</div>
+            <button type="submit" className="btn btn-primary ml-4">Like</button>
         </div>
     </div>
 }
