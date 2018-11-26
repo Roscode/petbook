@@ -15,7 +15,7 @@ function AddPost(state) {
                 onSubmit={(values, { setSubmitting }) => {
                     let user_id = state.session.user_id;
                     values.user_id = user_id;
-                    console.log(values);
+                    //console.log(values);
                     createPost(values).finally(() => setSubmitting(false));
                 }}>
                 {({ isSubmitting }) => (
@@ -41,5 +41,11 @@ export default connect(state => state)(AddPost);
 
 function Post(props) {
     let { item, key } = props;
-    return <div className="ml-4" key={key}>{item.content}</div>
+    //console.log(item)
+    return <div className="card" key={key}>
+        <div className="card-body" >
+            <h5 className="card-title">{item.user_id}</h5>
+            <div className="card-text ml-4">{item.content}</div>
+        </div>
+    </div>
 }

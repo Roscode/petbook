@@ -4,6 +4,7 @@ import * as a from 'actions';
 const mkpath = path => `/api/v1/${path}`;
 
 export function post_out(path, data) {
+  console.log(data);
   return new Promise((resolve, reject) => {
     $.ajax(mkpath(path), {
       dataType: 'json',
@@ -60,7 +61,7 @@ export function updateUser(user, user_id) {
 }
 
 export function createPost(post) {
-  return post_out('posts', { post }).then(({ data }) => fetchPosts());;
+  return post_out('posts', { post }).then(({ data }) => fetchPosts());
 }
 
 export function fetchPosts() {
