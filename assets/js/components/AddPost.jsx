@@ -1,5 +1,6 @@
 import React from 'react';
 import { createPost } from 'api';
+import { createLike } from 'api';
 import {
     Formik, Form, Field, ErrorMessage,
 } from 'formik';
@@ -31,7 +32,7 @@ function AddPost({ userId, posts }) {
             <div>
                 {// TODO filter by friends, order by created date
                     _.map(posts.reverse(), p => (
-                        <Post key={p.id} {...p} />
+                        <Post user={userId} postID={p.id} key={p.id} likes={p.likes} {...p} />
                     ))}
             </div>
         </div>
@@ -44,20 +45,26 @@ export default connect(({ session: { user_id: userId }, posts }) => ({
 }))(AddPost);
 
 // TODO replace userId with author name by preloading users
-function Post({ content, user_id, likes }) {
+function Post({ user, postID, likes, content, user_id }) {
+    function LikeAlert() {
+        alert("Post Liked");
+    }
+
+
     return (
         <div className="card">
             <div className="card-body">
                 <h5 className="card-title">{user_id}</h5>
                 <div className="card-text ml-4">{content}</div>
-                <div className="card-text ml-4">
-                    Likes
-          {likes}
-                </div>
-                <button type="submit" className="btn btn-primary ml-4">
+
+                <button type="submit"
+                    className="btn btn-primary ml-4"
+                    onClick={() => LikeAlert()}>
                     Like
         </button>
             </div>
         </div>
     );
 }
+
+

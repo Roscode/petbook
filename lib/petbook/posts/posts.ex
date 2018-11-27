@@ -36,9 +36,12 @@ defmodule Petbook.Posts do
 
   """
   def get_post!(id) do
-    Repo.get! from p in Post, 
-      where: p.id ==^ id,
-      preload: [:likes, :user]
+    Repo.get!(
+      from p in Post,
+        where: p.id == ^id,
+        preload: [:likes, :user]
+    )
+  end
 
   @doc """
   Creates a post.

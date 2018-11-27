@@ -16,6 +16,19 @@ export function sendPost(path, data) {
   });
 }
 
+export function sendLike(path, data) {
+  return new Promise((resolve, reject) => {
+    $.ajax(mkpath(path), {
+      dataType: 'json',
+      contentType: 'application/json; charset=UTF-8',
+      method: 'post',
+      data: JSON.stringify(data),
+      success: resolve,
+      failure: reject,
+    });
+  });
+}
+
 export function get(path) {
   return new Promise((resolve, reject) => {
     $.ajax(mkpath(path), {
@@ -58,16 +71,17 @@ export function updateUser(user, userId) {
 }
 
 export function fetchPosts() {
-  console.log("fetching")
   return get('posts').then(({ data }) => store.dispatch(a.postList(data)));
 }
 
 export function createPost(post) {
-  console.log("post")
   return sendPost('posts', { post }).then(() => fetchPosts());
-  console.log("created")
-}
 
+}
 export function googleSignIn(idToken) {
   return sendPost('sessions', { idToken }).then(({ data }) => store.dispatch(a.newSession(data)));
+}
+
+export function createLike(u_id, p_id) {
+  return sendLike('likes', { u_id, p_id }).then(() => fetchPosts());
 }
