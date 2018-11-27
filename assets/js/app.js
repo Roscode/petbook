@@ -17,24 +17,26 @@ import _ from 'lodash';
 // Import local files
 //
 // Local files can be imported directly using relative paths, for example:
-// import socket from "./socket"
+import { channel } from "./socket"
 
 import store from 'store';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import Root from 'root';
-import * as api from 'api';
+import { fetchPosts, loadUsers, checkNewPost } from 'api';
 import css from '../css/app.scss';
 
 window.jQuery = window.$ = jQuery;
 
 window.onload = () => {
-  api.fetchPosts();
+  fetchPosts();
+  loadUsers();
+  channel.on('newPost', by => checkNewPost(by));
   const node = document.getElementById('root');
   ReactDOM.render(
     <Provider store={store}>
-      <Root />
+      <Root channel={channel} />
     </Provider>,
     node,
   );

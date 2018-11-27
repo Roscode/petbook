@@ -31,7 +31,7 @@ function AddPost({ userId, posts, users }) {
       <div>
         {// TODO filter by friends, order by created date
         _.map(posts.reverse(), p => (
-          <Post key={p.content} {...p} user={users[p.user_id]} />
+          <Post key={p.id} {...p} user={users[p.user_id]} />
         ))}
       </div>
     </div>
