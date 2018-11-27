@@ -3,25 +3,28 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import * as api from 'api';
 
-function FindFriends({ userId }) {
-  let friends = api.fetchFriends(userId).then(({data}) => console.log(data));
+function FindFriends({ userId, users }) {
   return (
     <div><p>Check yo console</p>
-    {// TODO filter by friends, order by created date
-        _.map(friends, f => (
-          <Friend key={f.id} {...f} />
+    {// TODO filter by people already friends
+        _.map(users, f => (
+          <Friend key={f.id} friend={f} />
         ))}
     </div>
   );
 }
 
-export default connect(({ session: { user_id: userId } }) => ({
+export default connect(({ session: { user_id: userId }, users }) => ({
   userId,
+  users
 }))(FindFriends);
 
-//TODO put in what a friend should look like, will need to grab all users and then filter
+//TODO put in what a potential friend should look like
 function Friend(friend) {
   return (
-    <p>{friend.id}</p>
+    <div>
+      <p>{friend.friend1}</p>
+      <p>{friend.friend2}</p>
+    </div>
   )
 }

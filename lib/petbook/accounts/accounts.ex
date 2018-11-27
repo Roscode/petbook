@@ -7,6 +7,7 @@ defmodule Petbook.Accounts do
   alias Petbook.Repo
 
   alias Petbook.Accounts.User
+  alias Petbook.Friends
 
   @doc """
   Returns the list of users.
@@ -36,9 +37,10 @@ defmodule Petbook.Accounts do
 
   """
   def get_user!(id) do
-     Repo.one! from u in User,
-        where: u.id == ^id,
-        preload: [:friends]
+    friend_preloader = fn user_id -> Friends.list_friends_by_user(user_id) end
+    Repo.one! from u in User,
+      where: u.id == ^id,
+      preload: [friends: ^friend_preloader]
   end
 
   def get_user_by_email(email) do
@@ -75,9 +77,6 @@ defmodule Petbook.Accounts do
     |> Repo.insert()
   end
 
-  def create_friend(attrs \\ %{}) do
-    
-  end
   @doc """
   Updates a user.
 

@@ -11,7 +11,7 @@ const Petbook = () => (
       <Header />
       <Route path="/" exact component={Profile} />
       <Route path="/newsfeed" component={AddPost} />
-      <Route path="/friends" component={FindFriends} />
+      <Route path="/find-friends" component={FindFriends} />
     </div>
   </Router>
 );

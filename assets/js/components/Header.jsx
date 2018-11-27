@@ -17,7 +17,7 @@ function Header({ signOut }) {
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/friends">
+          <Link className="nav-link" to="/find-friends">
             Find Friends
           </Link>
         </li>

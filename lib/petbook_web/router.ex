@@ -18,6 +18,7 @@ defmodule PetbookWeb.Router do
 
     get "/", PageController, :index
     get "/newsfeed", PageController, :index
+    get "/find-friends", PageController, :index
   end
 
   scope "/api/v1", PetbookWeb do
@@ -27,5 +28,6 @@ defmodule PetbookWeb.Router do
     resources "/users", UserController, except: [:new, :edit]
     resources "/posts", PostController
     resources "/likes", LikeController, except: [:new, :edit]
+    resources "/friends", FriendController, except: [:new]
   end
 end
