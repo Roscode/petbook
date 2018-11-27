@@ -31,7 +31,7 @@ function AddPost({ userId, posts, users }) {
       <div>
         {// TODO filter by friends, order by created date
         _.map(posts.reverse(), p => (
-          <Post key={p.id} {...p} user={users[p.user_id]} />
+          <Post key={p.content} {...p} user={users[p.user_id]} />
         ))}
       </div>
     </div>
@@ -45,7 +45,9 @@ export default connect(({ session: { user_id: userId }, posts, users }) => ({
 }))(AddPost);
 
 // TODO replace userId with author name by preloading users
-function Post({ content, user, likes }) {
+function Post({
+  content, user, likes,
+}) {
   return (
     <div className="card">
       <div className="card-body">
