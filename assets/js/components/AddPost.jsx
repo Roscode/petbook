@@ -6,7 +6,7 @@ import {
 import _ from 'lodash';
 import { connect } from 'react-redux';
 
-function AddPost({ userId, posts }) {
+function AddPost({ userId, posts, users }) {
   return (
     <div>
       <Formik
@@ -31,24 +31,25 @@ function AddPost({ userId, posts }) {
       <div>
         {// TODO filter by friends, order by created date
         _.map(posts.reverse(), p => (
-          <Post key={p.id} {...p} />
+          <Post key={p.id} {...p} user={users[p.user_id]} />
         ))}
       </div>
     </div>
   );
 }
 
-export default connect(({ session: { user_id: userId }, posts }) => ({
+export default connect(({ session: { user_id: userId }, posts, users }) => ({
   userId,
+  users,
   posts,
 }))(AddPost);
 
 // TODO replace userId with author name by preloading users
-function Post({ content, user_id: userId, likes }) {
+function Post({ content, user, likes }) {
   return (
     <div className="card">
       <div className="card-body">
-        <h5 className="card-title">{userId}</h5>
+        <h5 className="card-title">{user.name}</h5>
         <div className="card-text ml-4">{content}</div>
         <div className="card-text ml-4">
           Likes
