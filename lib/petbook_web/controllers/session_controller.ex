@@ -44,7 +44,8 @@ defmodule PetbookWeb.SessionController do
             {:ok, user} = Petbook.Accounts.create_user(%{"email" => email, "google_id" => google_id})
             resp = %{
               data: %{
-                token: Phoenix.Token.sign(PetbookWeb.Endpoint, "user_id", user.id)
+                token: Phoenix.Token.sign(PetbookWeb.Endpoint, "user_id", user.id),
+                user_id: user.id
               }
             }
             conn

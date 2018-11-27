@@ -5,28 +5,31 @@ import {
 import { connect } from 'react-redux';
 import { updateUser } from 'api';
 
-function Profile({ userId }) {
+function Profile({
+  userId, user: {
+    name, age, birthday, gender, species, toy, treat,
+  },
+}) {
   return (
     <div className="container">
       <div className="row">
-        <div className="col-4 border" align="center">
+        <div className="col-8 border" align="center">
           <Formik
             initialValues={{
-              name: '',
-              age: 0,
-              birthday: '1990-08-08',
-              gender: '',
-              species: '',
-              toy: '',
-              treat: '',
+              name: name || '',
+              age: age || 0,
+              birthday: birthday || '',
+              gender: gender || '',
+              species: species || '',
+              toy: toy || '',
+              treat: treat || '',
             }}
-            onSubmit={(values, { setSubmitting }) => {
-              updateUser(values, userId).finally(() => setSubmitting(false));
-            }}
+            onSubmit={(values, { setSubmitting }) => updateUser(values, userId).finally(() => setSubmitting(false))
+            }
           >
             {({ isSubmitting }) => (
               <Form className="form signin-form">
-                <h4>Register A Pet</h4>
+                <h4>Fill out your Profile</h4>
                 <div className="form-group">
                   <label>
                     Name:
@@ -78,7 +81,7 @@ function Profile({ userId }) {
                 <ErrorMessage name="treat" component="div" />
 
                 <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
-                  Create Pet
+                  Submit
                 </button>
               </Form>
             )}
@@ -89,4 +92,7 @@ function Profile({ userId }) {
   );
 }
 
-export default connect(({ session: { user_id: userId } }) => ({ userId }))(Profile);
+export default connect(({ session: { user_id: userId }, users }) => ({
+  user: users[userId],
+  userId,
+}))(Profile);
