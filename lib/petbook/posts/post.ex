@@ -7,7 +7,8 @@ defmodule Petbook.Posts.Post do
 
     belongs_to :user, Petbook.Accounts.User
 
-    has_many :likes, Petbook.Likes.Like
+    many_to_many :likes, Petbook.Accounts.User, join_through: "likes"
+    # join_keys: [user_id: :id, post_id: :id]
 
     timestamps()
   end

@@ -13,7 +13,7 @@ function LoginForm({ onSubmit }) {
         <Formik
           initialValues={{ email: '', password: '' }}
           onSubmit={(values, { setSubmitting }) => {
-            onSubmit(values).then(() => console.log('heyo')).catch(() => console.log('fuuuuuuk')).finally(() => setSubmitting(false));
+            onSubmit(values).finally(() => setSubmitting(false));
           }}
         >
           {({ isSubmitting }) => (
@@ -131,7 +131,11 @@ class LoginPage extends React.Component {
                   {loginMode ? 'Sign Up' : 'Login'}
                 </button>
               </div>
-
+              <GoogleLogin
+                clientId={process.env.GOOGLE_CLIENT_ID}
+                onSuccess={receiveGoogleResponse}
+                onFailure={receiveGoogleResponse}
+              />
             </div>
           </div>
         </div>

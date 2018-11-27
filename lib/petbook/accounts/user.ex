@@ -19,7 +19,8 @@ defmodule Petbook.Accounts.User do
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
 
-    has_many :likes, Petbook.Likes.Like
+    many_to_many :likes, Petbook.Posts.Post, join_through: "likes"
+    # join_keys: [user_id: :id, post_id: :id]
 
     timestamps()
   end

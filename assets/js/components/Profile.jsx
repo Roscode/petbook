@@ -26,7 +26,7 @@ function Profile({ userId }) {
           >
             {({ isSubmitting }) => (
               <Form className="form signin-form">
-                <h4>Register A Pet</h4>
+                <h4>Complete Your Profile</h4>
                 <div className="form-group">
                   <label>
                     Name:

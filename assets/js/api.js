@@ -54,11 +54,14 @@ export function updateUser(user, userId) {
 }
 
 export function fetchPosts() {
+  console.log("fetching")
   return get('posts').then(({ data }) => store.dispatch(a.postList(data)));
 }
 
 export function createPost(post) {
+  console.log("post")
   return sendPost('posts', { post }).then(() => fetchPosts());
+  console.log("created")
 }
 
 export function googleSignIn(idToken) {

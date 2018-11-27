@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import * as c from 'constants.js';
 
 const replacer = (actionType, initialValue) => (state = initialValue, { type, payload }) => {
+  console.log(actionType, initialValue)
   switch (type) {
     case actionType:
       return payload;

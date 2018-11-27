@@ -4,8 +4,8 @@ defmodule Petbook.Repo.Migrations.CreateLikes do
   def change do
     create table(:likes) do
       add :likes, :integer
-      add :user_id, references(:users, on_delete: :delete_all)
-      add :post_id, references(:posts, on_delete: :delete_all)
+      add :user_id, references(:users, on_delete: :delete_all), null: false
+      add :post_id, references(:posts, on_delete: :delete_all), null: false
 
       timestamps()
     end

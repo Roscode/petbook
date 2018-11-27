@@ -44,11 +44,11 @@ export default connect(({ session: { user_id: userId }, posts }) => ({
 }))(AddPost);
 
 // TODO replace userId with author name by preloading users
-function Post({ content, user_id: userId, likes }) {
+function Post({ content, user_id, likes }) {
     return (
         <div className="card">
             <div className="card-body">
-                <h5 className="card-title">{userId.name}</h5>
+                <h5 className="card-title">{user_id}</h5>
                 <div className="card-text ml-4">{content}</div>
                 <div className="card-text ml-4">
                     Likes
