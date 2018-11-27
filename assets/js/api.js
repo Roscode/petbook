@@ -1,5 +1,6 @@
 import store from 'store';
 import * as a from 'actions';
+import _ from 'lodash';
 
 const mkpath = path => `/api/v1/${path}`;
 
@@ -61,10 +62,27 @@ export function fetchPosts() {
   return get('posts').then(({ data }) => store.dispatch(a.postList(data)));
 }
 
+export function fetchUsers() {
+  return get('users').then(({data}) => data);
+}
+
 export function createPost(post) {
   return sendPost('posts', { post }).then(() => fetchPosts());
 }
 
 export function googleSignIn(idToken) {
   return sendPost('sessions', { idToken }).then(({ data }) => store.dispatch(a.newSession(data)));
+}
+
+export function fetchFriends(user_id) {
+  console.log("fetching friends", user_id)
+  let user = fetchUsers().then(({data}) => {
+                console.log("found users", data);
+                let user = _.find(data, (user) => {
+                  user.id == user_id
+                });
+                console.log("found user", user);
+                return user.friends
+              });
+  return user;
 }

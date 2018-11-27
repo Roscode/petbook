@@ -21,6 +21,10 @@ defmodule Petbook.Accounts.User do
 
     has_many :likes, Petbook.Likes.Like
 
+    many_to_many :friends, Petbook.Accounts.User,
+      join_through: "friends",
+      join_keys: [user_id: :id, friend1_id: :id]
+
     timestamps()
   end
 
