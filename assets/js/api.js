@@ -49,8 +49,12 @@ export function createUser(user) {
   return sendPost('users', { user }).then(() => createSession(user));
 }
 
+export function loadUsers() {
+  return get('users').then(({ data }) => store.dispatch(a.userList(data)));
+}
+
 export function updateUser(user, userId) {
-  return put(`users/${userId}`, { user }).then(data => console.log(data)); // eslint-disable-line no-console
+  return put(`users/${userId}`, { user }).then(() => loadUsers());
 }
 
 export function fetchPosts() {

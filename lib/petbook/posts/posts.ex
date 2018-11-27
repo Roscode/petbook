@@ -35,7 +35,10 @@ defmodule Petbook.Posts do
       ** (Ecto.NoResultsError)
 
   """
-  def get_post!(id), do: Repo.get!(Post, id) |> Repo.preload([:likes, :user])
+  def get_post!(id) do
+    Repo.get! from p in Post, 
+      where: p.id ==^ id,
+      preload: [:likes, :user]
 
   @doc """
   Creates a post.
