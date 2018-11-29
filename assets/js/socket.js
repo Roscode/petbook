@@ -56,7 +56,7 @@ let socket = new Socket('/socket', { params: { token: window.userToken } });
 socket.connect();
 
 // Now that you are connected, you can join channels with a topic:
-let channel = socket.channel('topic:subtopic', {});
+let channel = socket.channel('posts:lobby', {});
 channel
   .join()
   .receive('ok', resp => {
@@ -66,4 +66,5 @@ channel
     console.log('Unable to join', resp);
   });
 
+export {channel};
 export default socket;

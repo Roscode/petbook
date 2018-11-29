@@ -3,7 +3,7 @@ import {
   Formik, Form, Field, ErrorMessage,
 } from 'formik';
 import { connect } from 'react-redux';
-import { updateUser } from 'api';
+import { updateUser, loadUsers } from 'api';
 
 function Profile({
   userId, user: {
@@ -96,6 +96,7 @@ function Profile({
 function loadingBarrier(props) {
   const { user } = props;
   if (!user) {
+    loadUsers();
     return <div>Loading...</div>;
   }
   return <Profile {...props} />;

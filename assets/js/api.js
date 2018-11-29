@@ -86,3 +86,17 @@ export function fetchFriends(user_id) {
               });
   return user;
 }
+
+export function checkNewPost({ by: authorId }) {
+  const state = store.getState();
+  if (!state.session) {
+    return;
+  }
+  if (!state.session.user_id) {
+    return;
+  }
+  if (state.session.user_id === authorId) {
+    return;
+  }
+  loadUsers().then(() => fetchPosts());
+}
