@@ -49,16 +49,21 @@ export default connect(({ session: { user_id: userId }, posts, users }) => ({
 function Post({
   content, user, likes,
 }) {
+  function LikeAlert() {
+    alert("Post Liked");
+  }
+
   return (
     <div className="card">
       <div className="card-body">
         <h5 className="card-title">{user.name}</h5>
         <div className="card-text ml-4">{content}</div>
         <div className="card-text ml-4">
-          Likes
           {likes}
         </div>
-        <button type="submit" className="btn btn-primary ml-4">
+        <button type="submit"
+          className="btn btn-primary ml-4"
+          onClick={() => LikeAlert()}>
           Like
         </button>
       </div>
