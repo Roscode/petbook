@@ -14,7 +14,7 @@ function Profile({
   return (
     <div className="container">
       <div className="row">
-        <div className="col-8 border" align="center">
+        <div className="col-8">
           <Formik
             initialValues={{
               name: name || '',
@@ -32,53 +32,59 @@ function Profile({
             {({ isSubmitting }) => (
               <Form className="form signin-form">
                 <h4>Fill out your Profile</h4>
-                <div className="form-group">
-                  <label>
-                    Name:
+                <div className="form-group row">
+                  <label className="col-sm-2 col-form-label"> Name: </label>
+                  <div className="col-sm-10">
                     <Field className="form-control" type="text" name="name" />
-                  </label>
+                  </div>
                 </div>
                 <ErrorMessage name="name" component="div" />
-                <div className="form-group">
-                  <label>
-                    Age:
+
+                <div className="form-group row">
+                  <label className="col-sm-2 col-form-label"> Age: </label>
+                  <div className="col-sm-10">
                     <Field className="form-control" type="number" min="0" name="age" />
-                  </label>
+                  </div>
                 </div>
                 <ErrorMessage name="age" component="div" />
-                <div className="form-group">
-                  <label>
-                    Birthday:
+
+                <div className="form-group row">
+                  <label className="col-sm-2 col-form-label"> Birthday: </label>
+                  <div className="col-sm-10">
                     <Field className="form-control" type="date" max="2018-11-24" name="birthday" />
-                  </label>
+                  </div>
                 </div>
                 <ErrorMessage name="birthday" component="div" />
-                <div className="form-group">
-                  <label>
-                    Gender:
+
+                <div className="form-group row">
+                  <label className="col-sm-2 col-form-label"> Gender: </label>
+                  <div className="col-sm-10">
                     <Field className="form-control" type="text" name="gender" />
-                  </label>
+                  </div>
                 </div>
                 <ErrorMessage name="gender" component="div" />
-                <div className="form-group">
-                  <label>
-                    Species:
+
+                <div className="form-group row">
+                  <label className="col-sm-2 col-form-label"> Species: </label>
+                  <div className="col-sm-10">
                     <Field className="form-control" type="text" name="species" />
-                  </label>
+                  </div>
                 </div>
                 <ErrorMessage name="species" component="div" />
-                <div className="form-group">
-                  <label>
-                    Favorite Toy:
+
+                <div className="form-group row">
+                  <label className="col-sm-2 col-form-label"> Fave Toy: </label>
+                  <div className="col-sm-10">
                     <Field className="form-control" type="text" name="toy" />
-                  </label>
+                  </div>
                 </div>
                 <ErrorMessage name="toy" component="div" />
-                <div className="form-group">
-                  <label>
-                    Favorite Treat:
+
+                <div className="form-group row">
+                  <label className="col-sm-2 col-form-label"> Fave Treat: </label>
+                  <div className="col-sm-10">
                     <Field className="form-control" type="text" name="treat" />
-                  </label>
+                  </div>
                 </div>
                 <ErrorMessage name="treat" component="div" />
 

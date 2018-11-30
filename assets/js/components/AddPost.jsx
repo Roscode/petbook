@@ -3,6 +3,7 @@ import { createPost } from 'api';
 import {
   Formik, Form, Field, ErrorMessage,
 } from 'formik';
+import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 
@@ -18,7 +19,7 @@ function AddPost({ userId, posts, users }) {
         {({ isSubmitting }) => (
           <Form className="form create-post-form ml-3 pt-3">
             <label>
-              Create a post!
+              What's happening?
               <Field className="form-control" type="text" name="content" />
             </label>
             <ErrorMessage name="content" component="div" />
@@ -49,17 +50,20 @@ function Post({
   content, user, likes,
 }) {
   return (
-    <div className="card">
-      <div className="card-body">
-        <h5 className="card-title">{user.name}</h5>
-        <div className="card-text ml-4">{content}</div>
-        <div className="card-text ml-4">
-          Likes
-          {likes}
+    <div className="container card">
+      <div className="row">
+        <div className="card-body">
+          <h5 className="card-title">{user.name}</h5>
+          <div className="card-text">{content}</div>
+          <div className="card-text">
+            {likes}
+          </div>
         </div>
-        <button type="submit" className="btn btn-primary ml-4">
-          Like
-        </button>
+        <div className="like-btn">
+          <button type="submit" className="btn btn-primary btn-lg">
+            Like
+          </button>
+        </div>
       </div>
     </div>
   );

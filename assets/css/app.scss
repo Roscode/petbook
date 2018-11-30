@@ -1,7 +1,7 @@
 @import "~bootstrap/scss/bootstrap";
 
 .container {
-	margin: 30px;
+	margin: 15px;
 }
 
 .col-4 {
@@ -15,4 +15,12 @@
 
 .pro-pic {
 	width: 50%;
+}
+
+.navbar {
+	background-color: #e3f2fd;
+}
+
+.like-btn {
+	padding: 25px;
 }

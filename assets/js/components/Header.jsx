@@ -6,11 +6,16 @@ import * as a from 'actions';
 
 function Header({ signOut }) {
   return (
-    <nav className="navbar navbar-dark bg-dark navbar-expand">
+    <nav className="navbar navbar-expand-lg navbar-light">
       <Link to="/">
         <span className="navbar-brand">Petbook</span>
       </Link>
       <ul className="navbar-nav">
+        <li className="nav-item">
+          <Link className="nav-link" to="/">
+            Profile
+          </Link>
+        </li>
         <li className="nav-item">
           <Link className="nav-link" to="/newsfeed">
             Newsfeed
