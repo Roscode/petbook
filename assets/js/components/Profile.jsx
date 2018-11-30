@@ -3,7 +3,7 @@ import {
   Formik, Form, Field, ErrorMessage,
 } from 'formik';
 import { connect } from 'react-redux';
-import { updateUser } from 'api';
+import { updateUser, loadUsers } from 'api';
 
 function Profile({
   userId, user: {
@@ -24,7 +24,8 @@ function Profile({
               toy: toy || '',
               treat: treat || '',
             }}
-            onSubmit={(values, { setSubmitting }) => updateUser(values, userId).finally(() => setSubmitting(false))
+            onSubmit={(values, { setSubmitting }) => updateUser(values, userId)
+              .finally(() => setSubmitting(false))
             }
           >
             {({ isSubmitting }) => (
@@ -92,7 +93,16 @@ function Profile({
   );
 }
 
+function loadingBarrier(props) {
+  const { user } = props;
+  if (!user) {
+    loadUsers();
+    return <div>Loading...</div>;
+  }
+  return <Profile {...props} />;
+}
+
 export default connect(({ session: { user_id: userId }, users }) => ({
   user: users[userId],
   userId,
-}))(Profile);
+}))(loadingBarrier);

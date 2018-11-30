@@ -82,6 +82,16 @@ export function googleSignIn(idToken) {
   return sendPost('sessions', { idToken }).then(({ data }) => store.dispatch(a.newSession(data)));
 }
 
-export function createLike(u_id, p_id) {
-  return sendLike('likes', { u_id, p_id }).then(() => fetchPosts());
+export function checkNewPost({ by: authorId }) {
+  const state = store.getState();
+  if (!state.session) {
+    return;
+  }
+  if (!state.session.user_id) {
+    return;
+  }
+  if (state.session.user_id === authorId) {
+    return;
+  }
+  loadUsers().then(() => fetchPosts());
 }
