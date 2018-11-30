@@ -45,7 +45,9 @@ export default connect(({ session: { user_id: userId }, posts, users }) => ({
 }))(AddPost);
 
 // TODO replace userId with author name by preloading users
-function Post({ content, user, likes }) {
+function Post({
+  content, user, likes,
+}) {
   return (
     <div className="card">
       <div className="card-body">
